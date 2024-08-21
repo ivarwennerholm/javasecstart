@@ -3,13 +3,11 @@ package se.systementor.javasecstart.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import se.systementor.javasecstart.model.Dog;
 import se.systementor.javasecstart.model.DogRepository;
-import se.systementor.javasecstart.services.DogService;
 
 import java.util.List;
 
@@ -31,10 +29,10 @@ public class AdminDogController {
      */
 
     @GetMapping(path="/admin/dogs")
-    String search(Model model,
-        @RequestParam(defaultValue = "name") String sortCol,
-        @RequestParam(defaultValue = "ASC") String sortOrder,
-        @RequestParam(defaultValue = "") String q)
+    String sort(Model model,
+                @RequestParam(defaultValue = "name") String sortCol,
+                @RequestParam(defaultValue = "ASC") String sortOrder,
+                @RequestParam(defaultValue = "") String q)
     {
 
         model.addAttribute("q", q);
