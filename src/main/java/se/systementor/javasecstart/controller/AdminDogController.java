@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import se.systementor.javasecstart.model.Dog;
 import se.systementor.javasecstart.model.DogRepository;
+import se.systementor.javasecstart.services.DogService;
 
 import java.util.List;
 
@@ -15,6 +16,8 @@ import java.util.List;
 public class AdminDogController {
     @Autowired
     private DogRepository dogRepository;
+    @Autowired
+    private DogService dogService;
 
     /*
     @GetMapping(path="/admin/dogs")
@@ -28,11 +31,13 @@ public class AdminDogController {
 
      */
 
+
+/*//  sorting
     @GetMapping(path="/admin/dogs")
     String sort(Model model,
-                @RequestParam(defaultValue = "name") String sortCol,
-                @RequestParam(defaultValue = "ASC") String sortOrder,
-                @RequestParam(defaultValue = "") String q)
+                  @RequestParam(defaultValue = "name") String sortCol,
+                  @RequestParam(defaultValue = "ASC") String sortOrder,
+                  @RequestParam(defaultValue = "") String q)
     {
 
         model.addAttribute("q", q);
@@ -42,6 +47,35 @@ public class AdminDogController {
         model.addAttribute("dogs", list);
 
         return "/admin/dogs/list";
+    }*/
+
+//    searching
+    @GetMapping(path="/admin/dogs")
+    String search(Model model,
+                @RequestParam(defaultValue = "name") String sortCol,
+                @RequestParam(defaultValue = "ASC") String sortOrder,
+                @RequestParam(defaultValue = "") String q)
+    {
+        List<Dog> list = null;
+        Sort sort = Sort.by(Sort.Direction.fromString(sortOrder), sortCol);
+        if (q != null){
+            list = dogService.getSearchDogList(q);
+        } else {
+            list =  dogService.getPublicDogs();
+        }
+        model.addAttribute("q", q);
+        model.addAttribute("dogs", list);
+
+        return "/admin/dogs/list";
     }
+
+ /*   @GetMapping("/search")
+    String search(Model model, @RequestParam(required = false) String keyword){
+
+        List<Dog> searchDogs = dogService.getSearchDogs(keyword);
+        model.addAttribute("searchDogs", searchDogs);
+
+        return "/admin/dogs/list";
+    }*/
 
 }

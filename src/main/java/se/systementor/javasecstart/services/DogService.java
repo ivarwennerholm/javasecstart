@@ -17,4 +17,11 @@ public class DogService {
         return dogRepository.findAllBySoldToIsNull();
     }
 
+    public List<Dog> getSort(Sort sortCol){
+        return dogRepository.findAll(sortCol);
+    }
+
+    public List<Dog> getSearchDogList(String keyword){
+        return dogRepository.findSearchDogs(keyword);
+    }
 }

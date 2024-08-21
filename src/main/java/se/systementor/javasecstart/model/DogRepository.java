@@ -11,5 +11,8 @@ public interface DogRepository extends CrudRepository<Dog, Long> {
 
     List<Dog> findAllBySoldToIsNull();
 
-    List<Dog> findAll(Sort sort);
+    List<Dog> findAll(Sort sortCol);
+
+    @Query("SELECT d FROM Dog d WHERE d.name LIKE %:keyword%")
+    List<Dog> findSearchDogs(@Param("keyword") String keyword);
 }
