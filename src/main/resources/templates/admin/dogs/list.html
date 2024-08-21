@@ -56,7 +56,7 @@
     </form>
     <table class="tabulator-table">
         <thead>
-        <tr class="tabulator-row">
+        <tr class="tabulator-row" >
             <th class="tabulator-cell">
                 Name
                 <a href="?sortCol=name&sortOrder=asc"><i class="fa-solid fa-arrow-up-a-z"></i></a>
@@ -66,24 +66,37 @@
             <th >
                 Breed
                 <a href="?sortCol=breed&sortOrder=asc"><i class="fa-solid fa-arrow-up-a-z"></i></a>
-                <a href="?sortCol=breed&sortOrder=asc"><i class="fa-solid fa-arrow-down-z-a"></i></a>
+                <a href="?sortCol=breed&sortOrder=desc"><i class="fa-solid fa-arrow-down-z-a"></i></a>
             </th>
             <th>Age
                 <a href="?sortCol=age&sortOrder=asc"><i class="fa-solid fa-arrow-up-a-z"></i></a>
-                <a href="?sortCol=age&sortOrder=asc"><i class="fa-solid fa-arrow-down-z-a"></i></a>
+                <a href="?sortCol=age&sortOrder=desc"><i class="fa-solid fa-arrow-down-z-a"></i></a>
             </th>
             <th>Size
                 <a href="?sortCol=size&sortOrder=asc"><i class="fa-solid fa-arrow-up-a-z"></i></a>
-                <a href="?sortCol=size&sortOrder=asc"><i class="fa-solid fa-arrow-down-z-a"></i></a>
+                <a href="?sortCol=size&sortOrder=desc"><i class="fa-solid fa-arrow-down-z-a"></i></a>
             </th>
             <th>Price
                 <a href="?sortCol=price&sortOrder=asc"><i class="fa-solid fa-arrow-up-a-z"></i></a>
-                <a href="?sortCol=price&sortOrder=asc"><i class="fa-solid fa-arrow-down-z-a"></i></a>
+                <a href="?sortCol=price&sortOrder=desc"><i class="fa-solid fa-arrow-down-z-a"></i></a>
             </th>
             <th></th>
         </tr>
 
         </thead>
+<!--        <tbody id="searchtablerows">
+        <tr th:each="dog: ${searchdoglist}">
+            <th th:text="${dog.getName()}"></th>
+            <td th:text="${dog.getBreed()}"></td>
+            <td th:text="${dog.getAge()}"></td>
+            <td th:text="${dog.getSize()}"></td>
+            <td th:text="${dog.getPrice()}"></td>
+            <td>
+                <a class="listbutton">Edit</a>
+            </td>
+        </tr>
+
+        </tbody>-->
         <tbody id="tablerows">
         <tr th:each="dog: ${dogs}">
             <th th:text="${dog.getName()}"></th>
@@ -97,6 +110,7 @@
         </tr>
 
         </tbody>
+
     </table>
 
 </div>
