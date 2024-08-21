@@ -12,6 +12,10 @@ public class DogService {
     @Autowired
     DogRepository dogRepository;
 
+    public List<Dog> getSearchDogs(String q) {
+        return dogRepository.findAllSearchDog(q);
+    }
+
     public List<Dog> getPublicDogs(){
         return dogRepository.findAllBySoldToIsNull();
     }

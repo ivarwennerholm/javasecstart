@@ -52,15 +52,15 @@
     <br/><br/>
     <form method="GET">
         Search:
-        <input type="text" name="q" value="" />
+        <input type="text" name="q" value="" th:href="@{/admin/dogs/search}"/>
     </form>
     <table class="tabulator-table">
         <thead>
         <tr class="tabulator-row">
             <th class="tabulator-cell">
                 Name
-                <a href="?"><i class="fa-solid fa-arrow-up-a-z"></i></a>
-                <a href="?"><i class="fa-solid fa-arrow-down-z-a"></i></a>
+                <a href="?sortCol=name&sortOrder=asc"><i class="fa-solid fa-arrow-up-a-z"></i></a>
+                <a href="?sortCol=name&sortOrder=desc"><i class="fa-solid fa-arrow-down-z-a"></i></a>
             </th>
 
             <th >
