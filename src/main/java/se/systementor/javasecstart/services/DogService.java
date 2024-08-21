@@ -24,4 +24,16 @@ public class DogService {
     public List<Dog> getSearchDogList(String keyword){
         return dogRepository.findSearchDogs(keyword);
     }
+
+    public List<Dog> serachAndSort(String q, String sortCol, String sortOrder){
+
+        List<Dog> list = null;
+        if (q != null && sortCol != null && sortOrder != null){
+            Sort sort = Sort.by(Sort.Order.by(sortCol).with(Sort.Direction.fromString(sortOrder)));
+            return list = dogRepository.findBySearchAndSort(q,sort);
+        } else if (q != null){
+            return list = dogRepository.findSearchDogs(q);
+        }
+        return getPublicDogs();
+    }
 }

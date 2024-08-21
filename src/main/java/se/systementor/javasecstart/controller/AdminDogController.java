@@ -32,7 +32,7 @@ public class AdminDogController {
      */
 
 
-/*//  sorting
+/*//  only sorting -- Rasmus
     @GetMapping(path="/admin/dogs")
     String sort(Model model,
                   @RequestParam(defaultValue = "name") String sortCol,
@@ -49,7 +49,7 @@ public class AdminDogController {
         return "/admin/dogs/list";
     }*/
 
-//    searching
+/*//    only searching -- Venus
     @GetMapping(path="/admin/dogs")
     String search(Model model,
                 @RequestParam(defaultValue = "name") String sortCol,
@@ -57,7 +57,7 @@ public class AdminDogController {
                 @RequestParam(defaultValue = "") String q)
     {
         List<Dog> list = null;
-        Sort sort = Sort.by(Sort.Direction.fromString(sortOrder), sortCol);
+        // Sort sort = Sort.by(Sort.Direction.fromString(sortOrder), sortCol);
         if (q != null){
             list = dogService.getSearchDogList(q);
         } else {
@@ -67,7 +67,23 @@ public class AdminDogController {
         model.addAttribute("dogs", list);
 
         return "/admin/dogs/list";
-    }
+    }*/
+
+//    Search & sort -- undergoing
+@GetMapping(path="/admin/dogs")
+String search(Model model,
+              @RequestParam(required = false) String q,
+              @RequestParam(required = false) String sortCol,
+              @RequestParam(required = false) String sortOrder)
+{
+    System.out.println("hello");
+    System.out.println("q=" + q);
+    System.out.println("sortCol=" + sortCol);
+    System.out.println("sortOrder=" + sortOrder);
+    List<Dog> list = dogService.serachAndSort(q,sortCol,sortOrder);
+    model.addAttribute("dogs",list);
+    return "/admin/dogs/list";
+}
 
  /*   @GetMapping("/search")
     String search(Model model, @RequestParam(required = false) String keyword){

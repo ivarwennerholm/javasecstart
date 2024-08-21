@@ -52,7 +52,7 @@
     <br/><br/>
     <form method="GET">
         Search:
-        <input type="text" name="q" th:value="${q}"/>
+        <input type="text" name="q" th:action="${q}"/>
     </form>
     <table class="tabulator-table">
         <thead>
@@ -65,8 +65,11 @@
 
             <th >
                 Breed
-                <a href="?sortCol=breed&sortOrder=asc"><i class="fa-solid fa-arrow-up-a-z"></i></a>
-                <a href="?sortCol=breed&sortOrder=desc"><i class="fa-solid fa-arrow-down-z-a"></i></a>
+<!--                <a href="?sortCol=breed&sortOrder=asc"><i class="fa-solid fa-arrow-up-a-z"></i></a>
+                <a href="?sortCol=breed&sortOrder=desc"><i class="fa-solid fa-arrow-down-z-a"></i></a>-->
+
+                <a th:href="@{/admin/dogs(q='sa', sortCol='breed', sortOrder='asc')}"><i class="fa-solid fa-arrow-up-a-z"></i></a>
+                <a th:href="@{/admin/dogs(q='sa', sortCol='breed', sortOrder='desc')}"><i class="fa-solid fa-arrow-down-z-a"></i></a>
             </th>
             <th>Age
                 <a href="?sortCol=age&sortOrder=asc"><i class="fa-solid fa-arrow-up-a-z"></i></a>
