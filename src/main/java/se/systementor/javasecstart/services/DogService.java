@@ -15,4 +15,8 @@ public class DogService {
     public List<Dog> getPublicDogs(){
         return dogRepository.findAllBySoldToIsNull();
     }
+
+    public Dog getDogById(int id) {
+        return dogRepository.findById((long) id).orElse(null);
+    }
 }
