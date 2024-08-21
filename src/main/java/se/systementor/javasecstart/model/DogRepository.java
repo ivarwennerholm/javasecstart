@@ -11,9 +11,5 @@ public interface DogRepository extends CrudRepository<Dog, Long> {
 
     List<Dog> findAllBySoldToIsNull();
 
-    //@Query()
-    @Query("select cc from Dog cc where cc.name= :searchTerm")
-    List<Dog> findAllSearchDog(@Param("searchTerm") String searchTerm);
-
     List<Dog> findAll(Sort sort);
 }
