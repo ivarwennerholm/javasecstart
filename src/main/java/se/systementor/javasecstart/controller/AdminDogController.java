@@ -1,13 +1,10 @@
 package se.systementor.javasecstart.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import se.systementor.javasecstart.model.Dog;
-import se.systementor.javasecstart.model.DogRepository;
 import se.systementor.javasecstart.services.DogService;
 
 import java.util.List;
@@ -15,11 +12,7 @@ import java.util.List;
 @Controller
 public class AdminDogController {
     @Autowired
-    private DogRepository dogRepository;
-    @Autowired
     private DogService dogService;
-
-    /*
     @GetMapping(path="/admin/dogs")
     String list(Model model){
         model.addAttribute("activeFunction", "home");
@@ -28,46 +21,6 @@ public class AdminDogController {
         model.addAttribute("dogs", dogService.getPublicDogs());
         return "admin/dogs/list";
     }
-
-     */
-
-
-/*//  only sorting -- Rasmus
-    @GetMapping(path="/admin/dogs")
-    String sort(Model model,
-                  @RequestParam(defaultValue = "name") String sortCol,
-                  @RequestParam(defaultValue = "ASC") String sortOrder,
-                  @RequestParam(defaultValue = "") String q)
-    {
-
-        model.addAttribute("q", q);
-        Sort sort = Sort.by(Sort.Direction.fromString(sortOrder), sortCol);
-
-        List<Dog> list =  dogRepository.findAll(sort);
-        model.addAttribute("dogs", list);
-
-        return "/admin/dogs/list";
-    }*/
-
-/*//    only searching -- Venus
-    @GetMapping(path="/admin/dogs")
-    String search(Model model,
-                @RequestParam(defaultValue = "name") String sortCol,
-                @RequestParam(defaultValue = "ASC") String sortOrder,
-                @RequestParam(defaultValue = "") String q)
-    {
-        List<Dog> list = null;
-        // Sort sort = Sort.by(Sort.Direction.fromString(sortOrder), sortCol);
-        if (q != null){
-            list = dogService.getSearchDogList(q);
-        } else {
-            list =  dogService.getPublicDogs();
-        }
-        model.addAttribute("q", q);
-        model.addAttribute("dogs", list);
-
-        return "/admin/dogs/list";
-    }*/
 
 //    Search & sort -- undergoing
 @GetMapping(path="/admin/dogs")
@@ -86,13 +39,24 @@ String search(Model model,
     return "/admin/dogs/list";
 }
 
- /*   @GetMapping("/search")
-    String search(Model model, @RequestParam(required = false) String keyword){
+    @RequestMapping("/admin/dogs/edit/{id}")
+    protected String editForm(@PathVariable int id, Model model) {
+        Dog dog = dogService.getDogById(id);
+        model.addAttribute("dog", dog);
+        return "admin/dogs/edit";
+    }
 
-        List<Dog> searchDogs = dogService.getSearchDogs(keyword);
-        model.addAttribute("searchDogs", searchDogs);
+    @PostMapping("admin/dogs/update/{id}")
+    protected String updateDog(@PathVariable int id,
+                               @RequestParam String name,
+                               @RequestParam String breed,
+                               @RequestParam String age,
+                               @RequestParam String size,
+                               @RequestParam int price) {
 
-        return "/admin/dogs/list";
-    }*/
+        dogService.updateDog(id, name, breed, age, size, price);
+        return "redirect:/admin/dogs";
+    }
+
 
 }

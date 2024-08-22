@@ -36,4 +36,18 @@ public class DogService {
         }
         return getPublicDogs();
     }
+
+    public Dog getDogById(int id) {
+        return dogRepository.findById((long) id).orElse(null);
+    }
+
+    public void updateDog(int id, String name, String breed, String age, String size, int price) {
+        Dog dog = getDogById(id);
+        dog.setName(name);
+        dog.setBreed(breed);
+        dog.setAge(age);
+        dog.setSize(size);
+        dog.setPrice(price);
+        dogRepository.save(dog);
+    }
 }
