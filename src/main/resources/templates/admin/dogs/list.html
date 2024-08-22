@@ -52,15 +52,15 @@
     <br/><br/>
     <form method="GET">
         Search:
-        <input type="text" name="q" th:action="${q}"/>
+        <input type="text" name="q" th:action="${q}" th:attr="placeholder=${key}" onfocus="this.placeholder = ''"/>
     </form>
     <table class="tabulator-table">
         <thead>
         <tr class="tabulator-row" >
             <th class="tabulator-cell">
                 Name
-                <a href="?sortCol=name&sortOrder=asc"><i class="fa-solid fa-arrow-up-a-z"></i></a>
-                <a href="?sortCol=name&sortOrder=desc"><i class="fa-solid fa-arrow-down-z-a"></i></a>
+                <a th:href="@{/admin/dogs(q=${key}, sortCol='name', sortOrder='asc')}"><i class="fa-solid fa-arrow-up-a-z"></i></a>
+                <a th:href="@{/admin/dogs(q=${key}, sortCol='name', sortOrder='desc')}"><i class="fa-solid fa-arrow-down-a-z"></i></a>
             </th>
 
             <th >
@@ -68,20 +68,20 @@
 <!--                <a href="?sortCol=breed&sortOrder=asc"><i class="fa-solid fa-arrow-up-a-z"></i></a>
                 <a href="?sortCol=breed&sortOrder=desc"><i class="fa-solid fa-arrow-down-z-a"></i></a>-->
 
-                <a th:href="@{/admin/dogs(q='sa', sortCol='breed', sortOrder='asc')}"><i class="fa-solid fa-arrow-up-a-z"></i></a>
-                <a th:href="@{/admin/dogs(q='sa', sortCol='breed', sortOrder='desc')}"><i class="fa-solid fa-arrow-down-z-a"></i></a>
+                <a th:href="@{/admin/dogs(q=${key}, sortCol='breed', sortOrder='asc')}"><i class="fa-solid fa-arrow-up-a-z"></i></a>
+                <a th:href="@{/admin/dogs(q=${key}, sortCol='breed', sortOrder='desc')}"><i class="fa-solid fa-arrow-down-a-z"></i></a>
             </th>
             <th>Age
-                <a href="?sortCol=age&sortOrder=asc"><i class="fa-solid fa-arrow-up-a-z"></i></a>
-                <a href="?sortCol=age&sortOrder=desc"><i class="fa-solid fa-arrow-down-z-a"></i></a>
+                <a th:href="@{/admin/dogs(q=${key}, sortCol='age', sortOrder='asc')}"><i class="fa-solid fa-arrow-up-a-z"></i></a>
+                <a th:href="@{/admin/dogs(q=${key}, sortCol='age', sortOrder='desc')}"><i class="fa-solid fa-arrow-down-a-z"></i></a>
             </th>
             <th>Size
-                <a href="?sortCol=size&sortOrder=asc"><i class="fa-solid fa-arrow-up-a-z"></i></a>
-                <a href="?sortCol=size&sortOrder=desc"><i class="fa-solid fa-arrow-down-z-a"></i></a>
+                <a th:href="@{/admin/dogs(q=${key}, sortCol='size', sortOrder='asc')}"><i class="fa-solid fa-arrow-up-a-z"></i></a>
+                <a th:href="@{/admin/dogs(q=${key}, sortCol='size', sortOrder='desc')}"><i class="fa-solid fa-arrow-down-a-z"></i></a>
             </th>
             <th>Price
-                <a href="?sortCol=price&sortOrder=asc"><i class="fa-solid fa-arrow-up-a-z"></i></a>
-                <a href="?sortCol=price&sortOrder=desc"><i class="fa-solid fa-arrow-down-z-a"></i></a>
+                <a th:href="@{/admin/dogs(q=${key}, sortCol='price', sortOrder='asc')}"><i class="fa-solid fa-arrow-up-a-z"></i></a>
+                <a th:href="@{/admin/dogs(q=${key}, sortCol='price', sortOrder='desc')}"><i class="fa-solid fa-arrow-down-a-z"></i></a>
             </th>
             <th></th>
         </tr>

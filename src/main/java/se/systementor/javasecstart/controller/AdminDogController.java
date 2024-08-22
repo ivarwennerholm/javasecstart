@@ -82,6 +82,7 @@ String search(Model model,
     System.out.println("sortOrder=" + sortOrder);
     List<Dog> list = dogService.serachAndSort(q,sortCol,sortOrder);
     model.addAttribute("dogs",list);
+    model.addAttribute("key",q);
     return "/admin/dogs/list";
 }
 
