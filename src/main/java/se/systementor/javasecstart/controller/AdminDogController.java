@@ -13,14 +13,14 @@ import java.util.List;
 public class AdminDogController {
     @Autowired
     private DogService dogService;
-    @GetMapping(path="/admin/dogs")
-    String list(Model model){
-        model.addAttribute("activeFunction", "home");
-//        setupVersion(model);
-
-        model.addAttribute("dogs", dogService.getPublicDogs());
-        return "admin/dogs/list";
-    }
+//    @GetMapping(path="/admin/dogs")
+//    String list(Model model){
+//        model.addAttribute("activeFunction", "home");
+////        setupVersion(model);
+//
+//        model.addAttribute("dogs", dogService.getPublicDogs());
+//        return "admin/dogs/list";
+//    }
 
 //    Search & sort -- undergoing
 @GetMapping(path="/admin/dogs")
