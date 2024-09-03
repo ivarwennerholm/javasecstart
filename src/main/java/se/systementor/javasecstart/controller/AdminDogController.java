@@ -20,10 +20,6 @@ public class AdminDogController {
                   @RequestParam(required = false) String q,
                   @RequestParam(required = false) String sortCol,
                   @RequestParam(required = false) String sortOrder) {
-        System.out.println("hello");
-        System.out.println("q=" + q);
-        System.out.println("sortCol=" + sortCol);
-        System.out.println("sortOrder=" + sortOrder);
         List<Dog> list = dogService.searchAndSort(q, sortCol, sortOrder);
         model.addAttribute("dogs", list);
         model.addAttribute("key", q);
