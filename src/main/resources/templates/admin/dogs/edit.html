@@ -4,13 +4,11 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="layouts/layouttemplate"
       data-theme="light">
-
 <th:block layout:fragment="extraHead">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@event-calendar/build@1.5.0/event-calendar.min.css">
     <script src="https://cdn.jsdelivr.net/npm/@event-calendar/build@1.5.0/event-calendar.min.js"></script>
     <script src="/js/modal.js"></script>
 </th:block>
-
 <body>
 <div layout:fragment="mainContent">
     <div class="row-box">
@@ -20,14 +18,10 @@
                     <div class="header-table">
                         <h2>Redigera hund</h2>
                     </div>
-
                 </div>
-
             </div>
-
         </div>
     </div>
-
     <form action="#" th:action="@{/admin/dogs/update/{id}(id=${dog.getId})}" method="post">
         <div class="center-align">
             <table class="table w-50">
@@ -63,7 +57,6 @@
             <input type="submit" value="Uppdatera" id="update">
         </div>
     </form>
-
 </div>
 </body>
 </html>

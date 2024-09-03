@@ -4,47 +4,24 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="layouts/layouttemplate"
       data-theme="light">
-
-
 <th:block layout:fragment="extraHead">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@event-calendar/build@1.5.0/event-calendar.min.css">
     <script src="https://cdn.jsdelivr.net/npm/@event-calendar/build@1.5.0/event-calendar.min.js"></script>
     <script src="/js/modal.js"></script>
 
 </th:block>
-
-<!--    <header>-->
-<!--        <div class="content">-->
-<!--            <div class="btn-left">-->
-<!--                <button class="btn btn-blue">-->
-<!--                    <span class="fas fa-plus mr-2"></span>-->
-<!--                    New Task-->
-<!--                </button>-->
-<!--            </div>-->
-<!--            <div class="btn-right">-->
-<!--                <button class="btn btn-sec left-radius">Share</button>-->
-<!--                <button class="btn btn-sec right-radius">Export</button>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </header>    -->
 <div layout:fragment="mainContent">
-
     <div class="row-box">
         <div class="col-boxes-1">
             <div class="col-table">
                 <div class="table-section">
                     <div class="header-table">
                         <h2>Alla hundar</h2>
-                        <!--                        <a href="#">see all</a>-->
                     </div>
-
                 </div>
-
             </div>
-
         </div>
     </div>
-
     <a class="listbutton" href="/newcustomer">
         <span class="fas fa-plus mr-2"></span>
         Ny hund
@@ -56,35 +33,42 @@
     </form>
     <table class="tabulator-table">
         <thead>
-        <tr class="tabulator-row" >
+        <tr class="tabulator-row">
             <th class="tabulator-cell">
                 Name
-                <a th:href="@{/admin/dogs(q=${key}, sortCol='name', sortOrder='asc')}"><i class="fa-solid fa-arrow-up-a-z"></i></a>
-                <a th:href="@{/admin/dogs(q=${key}, sortCol='name', sortOrder='desc')}"><i class="fa-solid fa-arrow-down-a-z"></i></a>
+                <a th:href="@{/admin/dogs(q=${key}, sortCol='name', sortOrder='asc')}"><i
+                        class="fa-solid fa-arrow-up-a-z"></i></a>
+                <a th:href="@{/admin/dogs(q=${key}, sortCol='name', sortOrder='desc')}"><i
+                        class="fa-solid fa-arrow-down-a-z"></i></a>
             </th>
-
-            <th >
+            <th>
                 Breed
-                <a th:href="@{/admin/dogs(q=${key}, sortCol='breed', sortOrder='asc')}"><i class="fa-solid fa-arrow-up-a-z"></i></a>
-                <a th:href="@{/admin/dogs(q=${key}, sortCol='breed', sortOrder='desc')}"><i class="fa-solid fa-arrow-down-a-z"></i></a>
+                <a th:href="@{/admin/dogs(q=${key}, sortCol='breed', sortOrder='asc')}"><i
+                        class="fa-solid fa-arrow-up-a-z"></i></a>
+                <a th:href="@{/admin/dogs(q=${key}, sortCol='breed', sortOrder='desc')}"><i
+                        class="fa-solid fa-arrow-down-a-z"></i></a>
             </th>
             <th>Age
-                <a th:href="@{/admin/dogs(q=${key}, sortCol='age', sortOrder='asc')}"><i class="fa-solid fa-arrow-up-a-z"></i></a>
-                <a th:href="@{/admin/dogs(q=${key}, sortCol='age', sortOrder='desc')}"><i class="fa-solid fa-arrow-down-a-z"></i></a>
+                <a th:href="@{/admin/dogs(q=${key}, sortCol='age', sortOrder='asc')}"><i
+                        class="fa-solid fa-arrow-up-a-z"></i></a>
+                <a th:href="@{/admin/dogs(q=${key}, sortCol='age', sortOrder='desc')}"><i
+                        class="fa-solid fa-arrow-down-a-z"></i></a>
             </th>
             <th>Size
-                <a th:href="@{/admin/dogs(q=${key}, sortCol='size', sortOrder='asc')}"><i class="fa-solid fa-arrow-up-a-z"></i></a>
-                <a th:href="@{/admin/dogs(q=${key}, sortCol='size', sortOrder='desc')}"><i class="fa-solid fa-arrow-down-a-z"></i></a>
+                <a th:href="@{/admin/dogs(q=${key}, sortCol='size', sortOrder='asc')}"><i
+                        class="fa-solid fa-arrow-up-a-z"></i></a>
+                <a th:href="@{/admin/dogs(q=${key}, sortCol='size', sortOrder='desc')}"><i
+                        class="fa-solid fa-arrow-down-a-z"></i></a>
             </th>
             <th>Price
-                <a th:href="@{/admin/dogs(q=${key}, sortCol='price', sortOrder='asc')}"><i class="fa-solid fa-arrow-up-a-z"></i></a>
-                <a th:href="@{/admin/dogs(q=${key}, sortCol='price', sortOrder='desc')}"><i class="fa-solid fa-arrow-down-a-z"></i></a>
+                <a th:href="@{/admin/dogs(q=${key}, sortCol='price', sortOrder='asc')}"><i
+                        class="fa-solid fa-arrow-up-a-z"></i></a>
+                <a th:href="@{/admin/dogs(q=${key}, sortCol='price', sortOrder='desc')}"><i
+                        class="fa-solid fa-arrow-down-a-z"></i></a>
             </th>
             <th></th>
         </tr>
-
         </thead>
-
         <tbody id="tablerows">
         <tr th:each="dog: ${dogs}">
             <th th:text="${dog.getName()}"></th>
@@ -96,16 +80,7 @@
                 <a class="listbutton" th:href="@{/admin/dogs/edit/{id}(id=${dog.getId()})}">Edit</a>
             </td>
         </tr>
-
         </tbody>
-
     </table>
-
 </div>
-
-
-
-
-
-
 </html>

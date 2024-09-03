@@ -11,24 +11,24 @@ import java.util.List;
 
 @Controller
 public class AdminDogController {
+
     @Autowired
     private DogService dogService;
 
-@GetMapping(path="/admin/dogs")
-String search(Model model,
-              @RequestParam(required = false) String q,
-              @RequestParam(required = false) String sortCol,
-              @RequestParam(required = false) String sortOrder)
-{
-    System.out.println("hello");
-    System.out.println("q=" + q);
-    System.out.println("sortCol=" + sortCol);
-    System.out.println("sortOrder=" + sortOrder);
-    List<Dog> list = dogService.serachAndSort(q,sortCol,sortOrder);
-    model.addAttribute("dogs",list);
-    model.addAttribute("key",q);
-    return "/admin/dogs/list";
-}
+    @GetMapping(path = "/admin/dogs")
+    String search(Model model,
+                  @RequestParam(required = false) String q,
+                  @RequestParam(required = false) String sortCol,
+                  @RequestParam(required = false) String sortOrder) {
+        System.out.println("hello");
+        System.out.println("q=" + q);
+        System.out.println("sortCol=" + sortCol);
+        System.out.println("sortOrder=" + sortOrder);
+        List<Dog> list = dogService.searchAndSort(q, sortCol, sortOrder);
+        model.addAttribute("dogs", list);
+        model.addAttribute("key", q);
+        return "/admin/dogs/list";
+    }
 
     @RequestMapping("/admin/dogs/edit/{id}")
     protected String editForm(@PathVariable int id, Model model) {
@@ -44,10 +44,8 @@ String search(Model model,
                                @RequestParam String age,
                                @RequestParam String size,
                                @RequestParam int price) {
-
         dogService.updateDog(id, name, breed, age, size, price);
         return "redirect:/admin/dogs";
     }
-
 
 }

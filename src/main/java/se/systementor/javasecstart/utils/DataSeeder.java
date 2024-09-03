@@ -16,20 +16,19 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static java.nio.file.Paths.get;
-
 @Component
 public class DataSeeder {
+
     @Autowired
     DogRepository dogRepository;
 
     Faker faker = new Faker();
 
     public void Seed() throws URISyntaxException {
-        if(dogRepository.count() > 0 ){
+        if (dogRepository.count() > 0) {
             return;
         }
-        for(int i =0; i < 100; i++) {
+        for (int i = 0; i < 100; i++) {
             dogRepository.save(RandomDog());
         }
     }
@@ -40,22 +39,19 @@ public class DataSeeder {
         dog.setName(faker.dog().name());
         dog.setBreed(faker.dog().breed());
         dog.setGender(faker.dog().gender());
-        dog.setPrice(faker.random().nextInt(4,20) * 1000);
+        dog.setPrice(faker.random().nextInt(4, 20) * 1000);
         dog.setSize(faker.dog().size());
         dog.setImage("/images/dogs/" + getRandomImage());
         return dog;
     }
 
     private String getRandomImage() throws URISyntaxException {
-        //Get all files in dir
         URL resource = getClass().getClassLoader().getResource("static/images/dogs");
         Path dir = Paths.get(resource.toURI());
-
-        Set<String> allFiles =  Stream.of(new File(String.valueOf(dir)).listFiles())
+        Set<String> allFiles = Stream.of(new File(String.valueOf(dir)).listFiles())
                 .filter(file -> !file.isDirectory())
                 .map(File::getName)
                 .collect(Collectors.toSet());
-
         return getByRandomClass(allFiles);
     }
 
@@ -67,11 +63,11 @@ public class DataSeeder {
         int randomIndex = new Random().nextInt(set.size());
         int i = 0;
         for (T element : set) {
-            if (i == randomIndex) {
+            if (i == randomIndex)
                 return element;
-            }
             i++;
         }
         throw new IllegalStateException("Something went wrong while picking a random element.");
     }
+
 }
